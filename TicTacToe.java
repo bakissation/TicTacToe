@@ -30,12 +30,12 @@ public class TicTacToe extends JFrame {
                     if (checkWin()) {
                         JOptionPane.showConfirmDialog(null, "Player " + currentPlayer + " wins!", "Winner",
                                 JOptionPane.DEFAULT_OPTION);
-                        System.exit(0);
+                        resetGame();
                     }
                     // Check if the game is a draw
                     else if (isBoardFull()) {
                         JOptionPane.showConfirmDialog(null, "Draw!", "Draw", JOptionPane.DEFAULT_OPTION);
-                        System.exit(0);
+                        resetGame();
                     }
                     // Switch to the next player
                     else {
@@ -51,12 +51,12 @@ public class TicTacToe extends JFrame {
                             if (checkWin()) {
                                 JOptionPane.showConfirmDialog(null, "Player " + currentPlayer + " wins!", "Winner",
                                         JOptionPane.DEFAULT_OPTION);
-                                System.exit(0);
+                                resetGame();
                             }
                             // Check if the game is a draw after making a move
                             else if (isBoardFull()) {
                                 JOptionPane.showConfirmDialog(null, "Draw!", "Draw", JOptionPane.DEFAULT_OPTION);
-                                System.exit(0);
+                                resetGame();
                             }
                             // Switch to the next player
                             switchPlayer();
@@ -171,6 +171,16 @@ public class TicTacToe extends JFrame {
             }
             return bestScore; // Return the best score for the minimizing player
         }
+    }
+
+    private void resetGame() {
+        // Reset the game by clearing the board and enabling all buttons
+        currentPlayer = 'X';
+        for (int i = 0; i < 9; i++) {
+            buttons[i].setText("");
+            buttons[i].setEnabled(true);
+        }
+        board = new char[3][3];
     }
 
     public static void main(String[] args) {
